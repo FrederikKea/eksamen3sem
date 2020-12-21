@@ -17,7 +17,8 @@ public class Supervisor {
     @Column(name = "name")
     private String name;
 
-    @JsonBackReference
+
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor", orphanRemoval = true)
     private Set<Student> students;
 

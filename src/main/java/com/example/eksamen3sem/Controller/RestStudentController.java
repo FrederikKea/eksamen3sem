@@ -46,14 +46,16 @@ public class RestStudentController {
         Student student = new Student(s.getName(),s.getEmail());
         studentRepo.save(student);
 
-        /*
-        Supervisor supervisor = s.getSupervisor();
-        supervisor.setStudents(supervisor.getStudents());
-        supervisorRepo.save(supervisor);
-*/
-        //Set<Supervisor> supervisors = s.getSupervisor();
-
-
+        Optional<Supervisor> optionalSupervisor = supervisorRepo.findById(student.getId());
+        if(!optionalSupervisor.isPresent()) {
+            Supervisor sup = optionalSupervisor.get();
+            sup.getStudents().add(s);
+            supervisorRepo.save(sup);
+        } else {
+            System.out.println("unknown supervisor id");
+        }
+        student.setSupervisor(s.getSupervisor());
+        studentRepo.save(student);
 
         return ResponseEntity.status(201).header("Location","/student/" + s.getId()).body("{'Msg': 'post created'}");
     }

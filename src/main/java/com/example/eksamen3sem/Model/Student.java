@@ -19,10 +19,10 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="supervisor_id")
     //for at undgå uendeligt loop, ignoreres parent property i childbojekt med JsonBackReference
-    @JsonManagedReference
+    @JsonBackReference
     private Supervisor supervisor;
 
     public Student() {
