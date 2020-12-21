@@ -55,9 +55,8 @@ public class Supervisor {
 
     @Override
     public String toString() {
-        return "Supervisor{" +
+        return "Supervisor " +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+                ", name='" + name;
     }
 }

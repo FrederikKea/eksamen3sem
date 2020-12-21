@@ -21,7 +21,17 @@
         </tr>
         <tr>
             <td><label for="supervisor">Supervisor</label></td>
-            <td><input type="text" th:field="*{supervisor}" id="supervisor" placeholder="put your supervisor here" ></td>
+            <td>
+                <select name="supervisor" id="supervisor">
+                    <option th:field="*{supervisor}"
+                            th:each="supervisor : ${supervisors}"
+                            th:text="${supervisor.name}"
+                            th:value="${supervisor.id}">
+                    </option>
+                </select>
+            </td>
+            <!-- lavet en dropdown af alle supervisors i stedet for man skal taste id på supervisor -->
+            <!-- <td><input type="text" th:field="*{supervisor}" id="supervisor" placeholder="put your supervisor here" ></td> -->
         </tr>
 
         <br>

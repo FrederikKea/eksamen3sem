@@ -2,6 +2,8 @@ package com.example.eksamen3sem.Controller;
 
 import com.example.eksamen3sem.Model.Student;
 import com.example.eksamen3sem.Repository.StudentRepo;
+import com.example.eksamen3sem.Repository.SupervisorRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +13,20 @@ import java.util.Optional;
 @Controller
 public class StudentController {
 
+    @Autowired
+    SupervisorRepo supervisorRepo;
+
     private StudentRepo studentRepo;
 
     public StudentController(StudentRepo studentRepo) {
         this.studentRepo = studentRepo;
+
     }
+
     @GetMapping("/index")
     public String readAllStudent(Model model) {
         model.addAttribute("students", studentRepo.findAll());
+        model.addAttribute("supervisors", supervisorRepo.findAll());
         model.addAttribute("student",new Student());
         return "student";
     }
@@ -32,6 +40,7 @@ public class StudentController {
     @GetMapping("/editStudent/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         Student student = studentRepo.findById(id).orElse(null);
+        model.addAttribute("supervisors", supervisorRepo.findAll());
         model.addAttribute("student", student);
         return "editStudent";
     }
