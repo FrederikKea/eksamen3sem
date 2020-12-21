@@ -1,6 +1,7 @@
 package com.example.eksamen3sem.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,9 +16,15 @@ public class Supervisor {
     @Column(name = "name")
     private String name;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor", orphanRemoval = true)
+    private Set<Student> students;
+
+    /*
     @ManyToMany(mappedBy = "supervisorSet", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Student> studentSet;
+     */
 
     public Supervisor() {
     }
@@ -43,11 +50,11 @@ public class Supervisor {
         this.name = name;
     }
 
-    public Set<Student> getStudentSet() {
-        return studentSet;
+    public Set<Student> getStudents() {
+        return students;
     }
 
-    public void setStudentSet(Set<Student> studentSet) {
-        this.studentSet = studentSet;
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }
