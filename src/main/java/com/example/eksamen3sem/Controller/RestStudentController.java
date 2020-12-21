@@ -69,6 +69,9 @@ public class RestStudentController {
             //Student id findes ikke
             return ResponseEntity.status(404).body("{'msg' : 'Not found'}");
         }
+        //opdater vores id hvis vi retter på en student, så den ikke bare creater
+        //en ny student og stadig beholder den gamle
+        s.setId(id);
         //opdater Supervisor automatisk - nu da relationen er oprettet
         studentRepo.save(s);
         return ResponseEntity.status(204).body("{msg' : 'Updated}'");
