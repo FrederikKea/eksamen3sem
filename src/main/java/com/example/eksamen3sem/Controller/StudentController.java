@@ -30,13 +30,8 @@ public class StudentController {
     }
 
     @GetMapping("/editStudent/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model, @ModelAttribute Student student) {
-        //Optional<Student> student = studentRepo.findById(id);
-        //model.addAttribute("students", studentRepo.findById(id));
-        //Student student = new Student();
-        //Optional<Student> student = studentRepo.findById(id);
-        //model.addAttribute("student", new Student());
-
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Student student = studentRepo.findById(id).orElse(null);
         model.addAttribute("student", student);
         return "editStudent";
     }
@@ -45,7 +40,6 @@ public class StudentController {
     public String updateStudent (@PathVariable("id") Long id, @ModelAttribute Student student, Model model) {
         student.setId(id);
         studentRepo.save(student);
-        //model.addAttribute("student",new Student());
         model.addAttribute("student", studentRepo.findAll());
 
         return "redirect:/index";
