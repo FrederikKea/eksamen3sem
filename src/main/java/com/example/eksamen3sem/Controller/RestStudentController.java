@@ -21,6 +21,24 @@ public class RestStudentController {
         this.supervisorRepo = supervisorRepo;
     }
 
+    //HTTP Get List of students
+    @GetMapping("/student")
+    public Iterable<Student> findAll(){
+        System.out.println(studentRepo.findAll());
+        return studentRepo.findAll();
+    }
+
+    //HTTP Get By ID
+    @GetMapping("student/{id}")
+    public ResponseEntity<Optional<Student>> findById(@PathVariable Long id) {
+        Optional<Student> student = studentRepo.findById(id);
+        if (!student.isPresent()){
+            return ResponseEntity.status(200).body(student); //ok
+        } else {
+            return ResponseEntity.status(404).body(student); // Not found
+        }
+    }
+
     // HTTP Post create
     @CrossOrigin(origins = "*", exposedHeaders = "Location")
     @PostMapping(value = "/student", consumes = {"application/json"})
@@ -28,9 +46,14 @@ public class RestStudentController {
         Student student = new Student(s.getName(),s.getEmail());
         studentRepo.save(student);
 
+        /*
         Supervisor supervisor = s.getSupervisor();
         supervisor.setStudents(supervisor.getStudents());
         supervisorRepo.save(supervisor);
+*/
+        //Set<Supervisor> supervisors = s.getSupervisor();
+
+
 
         return ResponseEntity.status(201).header("Location","/student/" + s.getId()).body("{'Msg': 'post created'}");
     }

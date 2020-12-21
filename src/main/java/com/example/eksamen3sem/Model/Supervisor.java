@@ -24,8 +24,7 @@ public class Supervisor {
     public Supervisor() {
     }
 
-    public Supervisor(long id, String name) {
-        this.id = id;
+    public Supervisor(String name) {
         this.name = name;
     }
 

@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="supervisor_id")
     //for at undgå uendeligt loop, ignoreres parent property i childbojekt med JsonBackReference
     @JsonManagedReference
@@ -63,5 +63,15 @@ public class Student {
 
     public void setSupervisor(Supervisor supervisor) {
         this.supervisor = supervisor;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", supervisor=" + supervisor +
+                '}';
     }
 }
