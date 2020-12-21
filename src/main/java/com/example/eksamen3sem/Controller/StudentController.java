@@ -60,8 +60,5 @@ public class StudentController {
         studentRepo.deleteById(id);
         return "redirect:/index";
     }
-
-
-
-
 }
+

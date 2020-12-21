@@ -47,7 +47,7 @@ public class RestStudentController {
         studentRepo.save(student);
 
         Optional<Supervisor> optionalSupervisor = supervisorRepo.findById(student.getId());
-        if(!optionalSupervisor.isPresent()) {
+        if(optionalSupervisor.isPresent()) {
             Supervisor sup = optionalSupervisor.get();
             sup.getStudents().add(s);
             supervisorRepo.save(sup);
