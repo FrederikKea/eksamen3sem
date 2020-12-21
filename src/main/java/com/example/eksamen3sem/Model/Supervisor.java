@@ -57,6 +57,6 @@ public class Supervisor {
     public String toString() {
         return "Supervisor " +
                 "id=" + id +
-                ", name='" + name;
+                ", name=" + name;
     }
 }

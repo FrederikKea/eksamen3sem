@@ -13,14 +13,15 @@ import java.util.Optional;
 @Controller
 public class StudentController {
 
-    @Autowired
-    SupervisorRepo supervisorRepo;
+    //@Autowired
+    //SupervisorRepo supervisorRepo;
 
     private StudentRepo studentRepo;
+    private SupervisorRepo supervisorRepo;
 
-    public StudentController(StudentRepo studentRepo) {
+    public StudentController(StudentRepo studentRepo, SupervisorRepo supervisorRepo) {
         this.studentRepo = studentRepo;
-
+        this.supervisorRepo = supervisorRepo;
     }
 
     @GetMapping("/index")

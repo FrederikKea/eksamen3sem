@@ -46,6 +46,7 @@ public class RestStudentController {
         Student student = new Student(s.getName(),s.getEmail());
         studentRepo.save(student);
 
+        /*
         Optional<Supervisor> optionalSupervisor = supervisorRepo.findById(student.getId());
         if(optionalSupervisor.isPresent()) {
             Supervisor sup = optionalSupervisor.get();
@@ -53,7 +54,7 @@ public class RestStudentController {
             supervisorRepo.save(sup);
         } else {
             System.out.println("unknown supervisor id");
-        }
+        } */
         student.setSupervisor(s.getSupervisor());
         studentRepo.save(student);
 
