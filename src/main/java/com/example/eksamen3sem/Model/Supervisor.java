@@ -1,5 +1,6 @@
 package com.example.eksamen3sem.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -16,15 +17,9 @@ public class Supervisor {
     @Column(name = "name")
     private String name;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor", orphanRemoval = true)
     private Set<Student> students;
-
-    /*
-    @ManyToMany(mappedBy = "supervisorSet", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Student> studentSet;
-     */
 
     public Supervisor() {
     }

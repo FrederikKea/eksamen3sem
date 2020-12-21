@@ -1,6 +1,7 @@
 package com.example.eksamen3sem.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,24 +22,13 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="supervisor_id")
     //for at undgå uendeligt loop, ignoreres parent property i childbojekt med JsonBackReference
-    @JsonBackReference
+    @JsonManagedReference
     private Supervisor supervisor;
-
-
-
-    /*
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "students_supervisor",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "supervisor_id"))
-    private Set<Supervisor> supervisorSet = new HashSet<>();
-    */
 
     public Student() {
     }
 
-    public Student(long id, String name, String email) {
-        this.id = id;
+    public Student(String name, String email) {
         this.name = name;
         this.email = email;
     }
