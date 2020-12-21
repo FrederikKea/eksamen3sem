@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Update student</h1>
-          <!-- virker ikke når jeg laver student.id "@{/updateStudent/{id}(id=${student.id})}" -->
+
 <form action="#" th:action="@{/updateStudent/{id}(id=${student.id})}" th:object="${student}" method="post">
 
     <table>
@@ -36,10 +36,6 @@
         <td><input type="submit" name="submit" value="Update student"></td>
     </table>
 </form>
-
-
-
-
 
 </body>
 </html>

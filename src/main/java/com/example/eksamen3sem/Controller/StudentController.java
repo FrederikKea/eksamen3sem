@@ -13,9 +13,6 @@ import java.util.Optional;
 @Controller
 public class StudentController {
 
-    //@Autowired
-    //SupervisorRepo supervisorRepo;
-
     private StudentRepo studentRepo;
     private SupervisorRepo supervisorRepo;
 
@@ -55,7 +52,6 @@ public class StudentController {
         return "redirect:/index";
     }
 
-    //
     @GetMapping("deleteStudent/{id}")
     public String deleteStudent (@PathVariable Long id) {
         studentRepo.deleteById(id);
