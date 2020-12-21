@@ -52,4 +52,12 @@ public class Supervisor {
     public void setStudents(Set<Student> students) {
         this.students = students;
     }
+
+    @Override
+    public String toString() {
+        return "Supervisor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
